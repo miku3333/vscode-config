@@ -1,0 +1,332 @@
+{
+    // 定时器-start
+    "interval": {
+        "prefix": "interval",
+        "body": [
+            "const interval = setInterval(() => {",
+            "\t${1:}",
+            "}, 1000);"
+        ]
+    },
+    "timeout": {
+        "prefix": "timeout",
+        "body": [
+            "const timeout = setTimeout(() => {",
+            "\tclearTimeout(timeout);",
+            "\t${1:}",
+            "}, 1000);"
+        ]
+    },
+    // 定时器-end
+    // 模版-start
+    "新文件组件": {
+        "prefix": "rfc",
+        "body": [
+            "import {memo, useState} from 'react';",
+            "",
+            "${2|const styles = require('./style.module.less');,import styles from './style.module.less';,import styles from './style.module.scss';,const styles = require('./style.module.scss');|}",
+            "",
+            "interface I${1:}Props {",
+            "\ttemp?: string;",
+            "}",
+            "",
+            "const ${1:} = ({temp}: I${1:}Props) => {",
+            "\tconst [tempState, setTempState] = useState(1);",
+            "\treturn (",
+            "\t\t<div>111</div>",
+            "\t);",
+            "};",
+            "",
+            "export default memo(${1:});",
+            ""
+        ]
+    },
+    "新组件": {
+        "prefix": "fc",
+        "body": [
+            "",
+            "interface I${1/(.*)/${1:/pascalcase}/}Props {",
+            "\tprop?: string;",
+            "}",
+            "",
+            "export const ${1/(.*)/${1:/pascalcase}/} = memo(({prop}: I${1/(.*)/${1:/pascalcase}/}Props) => {",
+            "\tconst [tempState, setTempState] = useState(1);",
+            "\tconst onClick = useCallback(() => {",
+            "\t\tsetTempState((tempState) => tempState + 1);",
+            "\t}, []);",
+            "\tuseEffect(() => {",
+            "\t\tconsole.log('tempState ===> ', tempState);",
+            "\t}, [tempState]);",
+            "\t",
+            "\treturn (",
+            "\t\t<div>",
+            "\t\t\t<div onClick={onClick}>${1/(.*)/${1:/pascalcase}/}</div>",
+            "\t\t\t<div>{tempState}</div>",
+            "\t\t\t<div>{prop}</div>",
+            "\t\t</div>",
+            "\t);",
+            "});",
+            "",
+        ]
+    },
+    // 模版-end
+    // ts-start
+    "boolean": {
+        "prefix": "b",
+        "body": [
+            "boolean"
+        ]
+    },
+    "number": {
+        "prefix": "n",
+        "body": [
+            "number"
+        ]
+    },
+    "string": {
+        "prefix": "s",
+        "body": [
+            "string"
+        ]
+    },
+    // ts-end
+    // style-start
+    "import style": {
+        "prefix": "ims",
+        "body": [
+            "",
+            "${1|const styles = require('./style.module.less');,import styles from './style.module.less';,import styles from './style.module.scss';,const styles = require('./style.module.scss');|}",
+            ""
+        ]
+    },
+    "className(包含div)": {
+        "prefix": "cs",
+        "body": [
+            "<div className={styles.${1}}>${2}</div>"
+        ]
+    },
+    "className(不包含div)": {
+        "prefix": "cls",
+        "body": [
+            "className={styles.${1}}"
+        ]
+    },
+    // style-end
+    // 关闭校验-start
+    "关闭eslint": {
+        "prefix": "de",
+        "body": [
+            "// diable-eslint-next-line"
+        ]
+    },
+    "关闭ts": {
+        "prefix": "dt",
+        "body": [
+            "// @ts-ignore"
+        ]
+    },
+    "当行关闭stylelint": {
+        "prefix": "ds",
+        "body": [
+            "/* stylelint-disable-next-line */",
+        ]
+    },
+    "关闭prettier": {
+        "prefix": "dp",
+        "body": [
+            "// prettier-ignore"
+        ]
+    },
+    // 关闭校验-end
+    // 错误处理-start
+    "错误处理": {
+        "prefix": "nc",
+        "body": [
+            "const res = niceTrySync(() =>  ${1:})",
+            "if (res) {",
+            "\tconsole.log(\"success ===> \", res)",
+            "}"
+        ]
+    },
+    "异步错误处理": {
+        "prefix": "nca",
+        "body": [
+            "const res = await niceTryAsync(async () =>  ${1:})",
+            "if (res) {",
+            "\tconsole.log(\"success ===> \", res)",
+            "}"
+        ]
+    },
+    // 错误处理-end
+    // react-start
+    "useState": {
+        "prefix": "us",
+        "body": [
+            "const [${1}, set${1/(\\S)/${1:/upcase}/i}] = useState(${2|null,[],0,'',{}|});"
+        ]
+    },
+    "useMemo": {
+        "prefix": "um",
+        "body": [
+            "const ${1:} = useMemo(() => {",
+            "\tconst temp = 1;",
+            "\treturn temp;",
+            "}, []);"
+        ]
+    },
+    "useCallback": {
+        "prefix": "uc",
+        "body": [
+            "const ${1:} = useCallback(() => {",
+            "\tconst temp = 1;",
+            "\treturn temp;",
+            "}, []);"
+        ]
+    },
+    "useRef": {
+        "prefix": "ur",
+        "body": [
+            "const ${1:} = useRef(null);"
+        ]
+    },
+    "useEffect": {
+        "prefix": "ue",
+        "body": [
+            "useEffect(() => {",
+            "\t${1:}",
+            "}, []);"
+        ]
+    },
+    // react-end
+    // 声明
+    "匿名函数": {
+        "prefix": "f",
+        "body": [
+            "(${1:item}) => ${1:item}"
+        ]
+    },
+    "匿名异步函数": {
+        "prefix": "f",
+        "body": [
+            "async (${1:item}) => ${1:item}"
+        ]
+    },
+    "声明变量": {
+        "prefix": "c",
+        "body": [
+            "const ${1:temp} = '${1:temp}';"
+        ]
+    },
+    "声明函数": {
+        "prefix": "cf",
+        "body": [
+            "const fn = (${1:item}) => {",
+            "\tconsole.log(\"item ===> \", ${1:item})",
+            "};"
+        ]
+    },
+    "声明异步函数": {
+        "prefix": "caf",
+        "body": [
+            "const afn = async () => {",
+            "\tconsole.log(\"item ===> \", ${item})",
+            "};"
+        ]
+    },
+    "export变量": {
+        "prefix": "ec",
+        "body": [
+            "export const ${1/(.*)/${1:/upcase}/ig} = '${1}'"
+        ]
+    },
+    "export函数": {
+        "prefix": "ef",
+        "body": [
+            "export const ${1:func} = (item: any) =>{",
+            "\tconsole.log(\"item ===> \", ${item})",
+            "}"
+        ]
+    },
+    "export异步函数": {
+        "prefix": "eaf",
+        "body": [
+            "export const ${1:func} = async (item: any) =>{",
+            "\tconsole.log(\"item ===> \", ${item})",
+            "}"
+        ]
+    },
+    "接口": {
+        "prefix": "ei",
+        "body": [
+            "export interface I${1/(.*)/${1:/capitalize}/} {",
+            "\t${0}",
+            "}"
+        ]
+    },
+    "枚举值": {
+        "prefix": "enu",
+        "body": [
+            "",
+            "// ValufOf<typeof ${1/(\\S*)/${1:/upcase}/i}_${2|STATUS,TYPE,ENUM|}>",
+            "export enum ${1/(\\S*)/${1:/upcase}/i}_${2|STATUS,TYPE|} {",
+            "\tis${1/(\\S)/${1:/upcase}/i} = 0,",
+            "\tisNot${1/(\\S)/${1:/upcase}/i} = 1,",
+            "};",
+            ""
+        ]
+    },
+    // 声明-start
+    // 打印-start
+    "clg": {
+        "prefix": "clg",
+        "body": [
+            "console.log('${1} ===> ', ${1});"
+        ],
+        "description": "打印!"
+    },
+    "clg!": {
+        "prefix": "clg1",
+        "body": [
+            "console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');"
+        ],
+        "description": "打印!"
+    },
+    "clg@": {
+        "prefix": "clg2",
+        "body": [
+            "console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');"
+        ],
+        "description": "打印@"
+    },
+    "clg#": {
+        "prefix": "clg3",
+        "body": [
+            "console.log('##################################################');"
+        ],
+        "description": "打印#"
+    },
+    "clg$": {
+        "prefix": "clg4",
+        "body": [
+            "console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');"
+        ],
+        "description": "打印$"
+    },
+    "clg%": {
+        "prefix": "clg5",
+        "body": [
+            "console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');"
+        ],
+        "description": "打印%"
+    },
+    // 打印-end
+    // 其他-start
+    "待办": {
+        "prefix": "todo",
+        "body": [
+            "// TODO: "
+        ],
+        "description": "待办"
+    },
+    // 其他-end
+}
